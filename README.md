@@ -1,6 +1,6 @@
 Prompt Profiler
 
-A simple CLI tool to measure how efficient your AI prompts are through token usage, redundancy, and entropy metrics. It can be used with an offline LLM local to your machine, OpenAI API, or mock mode. 
+prompt-profiler is a lightweight NLP tool that analyzes transformer model prompts and outputs for entropy, efficiency, token usage, and redudancy. Built with HuggingFace Transformers, it works with any LLM, including GPT2, Mistral, and custom fine-tunes. 
 
 This tool is ideal for AI developers, trainers, or anyone else that is interested in prompt/response performance across models.
 
@@ -13,11 +13,14 @@ OR
   python prompt_profiler.py "Prompt text here" --mode local --model_path /models/model
 
 FEATURES
+-works with any Transformers model
+- CLI + interactive mode
+- Lightweight, Python-native
 - Token counts (prompt & response)
 - word/character stats
 - Redundancy & entropy scores
 - Efficiency rating
-- local LLM, OpenAI API, or mock mode.
+- Ability to use OpenAI key if desired, but not required. 
 
   *optional for OpenAI integration:
     pip install openai tiktoken
