@@ -8,18 +8,21 @@ from utils.printer import print_results
 
 def main():
     parser = argparse.ArgumentParser(description="Prompt Profiler: Analyze prompt efficiency with HuggingFace models")
-    parser.add_argument('--prompt', type=str, required=True, help='Prompt string to send to the model')
-    parser.add_argument('--model', type=str, default='gpt2', help='HuggingFace model name (e.g., gpt2, distilgpt2)')
+    parser.add_argument('--model', type=str, default=None, help='HuggingFace model name (e.g., gpt2, distilgpt2) or path to local model')
+    parser.add_argument('--prompt', type=str, default=None, help="Text prompt to analyze")
     args = parser.parse_args()
 
-    tokenizer, model, device = load_model(args.model)
+    # Ask for model first, then prompt
+    model_name = args.model or input("Enter model name (e.g., gpt2) or path to local model: ").strip()
+    prompt = args.prompt or input("Enter prompt: ").strip()
+
+    tokenizer, model, device = load_model(model_name)
 
     # Tokenize and analyze prompt
-    prompt_metrics = analyze_tokens(args.prompt)
-    prompt_token_count = prompt_metrics['token_count']
+    prompt_metrics = analyze_tokens(prompt)
 
     # Generate output and measure latency
-    inputs = tokenizer(args.prompt, return_tensors='pt').to(device)
+    inputs = tokenizer(prompt, return_tensors='pt').to(device)
     start_time = time.time()
     with torch.no_grad():
         outputs = model.generate(
@@ -35,15 +38,18 @@ def main():
 
     # Tokenize and analyze output
     output_metrics = analyze_tokens(output_text)
-    output_token_count = output_metrics['token_count']
+
+    # Post-process output for readability
+    cleaned_output = output_text[len(prompt):] if output_text.startswith(prompt) else output_text
+    cleaned_output = cleaned_output.strip()
 
     # Prepare metrics
     metrics = {
-        'Model': args.model,
+        'Model': model_name,
         'Device': device,
-        'Prompt': args.prompt,
+        'Prompt': prompt,
         'Latency (s)': f"{latency:.3f}",
-        'Output': output_text[len(args.prompt):].strip() if output_text.startswith(args.prompt) else output_text.strip(),
+        'Output': cleaned_output,
     }
     # Add prompt metrics with prefix
     for k, v in prompt_metrics.items():
@@ -54,6 +60,7 @@ def main():
         if k != 'words':
             metrics[f'Output {k.replace("_", " ").title()}'] = v
     print_results(metrics)
+
 
 if __name__ == "__main__":
     main()
