@@ -2,6 +2,8 @@ Prompt Profiler
 
 A simple CLI tool to measure how efficient your AI prompts are through token usage, redundancy, and entropy metrics. It can be used with an offline LLM local to your machine, OpenAI API, or mock mode. 
 
+This tool is ideal for AI developers, trainers, or anyone else that is interested in prompt/response performance across models.
+
 You can run the profiler using any Hugging Face CasualLM from the terminal:
 
   python prompt-profiler.py "prompt text here" --model "gpt2"
