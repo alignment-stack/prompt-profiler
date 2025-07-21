@@ -1,3 +1,3 @@
-def test_smoke();
+def test_smoke():
 	assert TrueO
 
