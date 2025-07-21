@@ -1,6 +1,6 @@
 Prompt Profiler
 
-prompt-profiler is a lightweight NLP tool that analyzes transformer model prompts and outputs for entropy, efficiency, token usage, and redudancy. Built with HuggingFace Transformers, it works with any LLM, including GPT2, Mistral, and custom fine-tunes. 
+prompt-profiler is a lightweight transformer prompt analysis CLI that calculates entropy, redundancy, token usage, and output efficiency. Built with HuggingFace transformers, it works with any LLM, including GPT2, Mistral, and custom fine-tunes. 
 
 This tool is ideal for AI developers, trainers, or anyone else that is interested in prompt/response performance across models.
 
