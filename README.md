@@ -20,6 +20,10 @@ FEATURES
   *optional for OpenAI integration:
     pip install openai tiktoken
 
+INTERACTIVE MODE
+
+From within the folder run "python prompt_profiler.py". This will launch the terminal and ask you to enter in a model or path. It will then ask you to enter in your prompt. The response will be your test results. 
+
 DEPENDENCIES
 Please make sure you have the following installed prior to running the tool:
 - torch
