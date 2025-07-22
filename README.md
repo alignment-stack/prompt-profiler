@@ -78,3 +78,5 @@ SAMPLE OUTPUT:
 │<font color="#A347BA"><b> Output Entropy            </b></font>│<font color="#2AA1B3"><b> 6.589                                                                                                                                                          </b></font>│
 ├───────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
 │<font color="#A347BA"><b> Output Efficiency         </b></font>│<font color="#2AA1B3"><b> 13.57                                                                                                                               </b></font></pre>
+
+#Developed by Tyler Williams 2025
