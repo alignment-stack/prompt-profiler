@@ -1,6 +1,13 @@
+
+import os
+import sys
 import argparse
 import time
 import torch
+
+# Ensure local imports work when run as a CLI or module
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from models.base_model_loader import load_model
 from analyzers.token_counter import analyze_tokens
 from utils.printer import print_results

@@ -1,0 +1,2 @@
+[console_scripts]
+prompt-profiler = prompt_profiler:main
